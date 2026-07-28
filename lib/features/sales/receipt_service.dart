@@ -149,7 +149,7 @@ class ReceiptService {
       'Total: ${CurrencyService.format(sale['total'] as num, code: currency)}',
       'Payment: ${sale['payment_method']}',
       'Status: ${sale['payment_status']}',
-      'EasyPOS 1.3 by HamdhyTech',
+      'EasyPOS 1.4 by HamdhyTech',
     ].join('\n');
   }
 

@@ -5,6 +5,8 @@ import '../../core/models/product.dart';
 import '../../core/services/currency_service.dart';
 import 'product_form_screen.dart';
 import '../../core/services/admin_guard.dart';
+import '../../core/services/product_lookup_service.dart';
+import '../scanner/barcode_scanner_screen.dart';
 
 class ProductsScreen extends StatefulWidget {
   const ProductsScreen({super.key});
@@ -74,11 +76,36 @@ class _ProductsScreenState extends State<ProductsScreen> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        heroTag: 'products-add',
-        onPressed: () => _openForm(),
-        icon: const Icon(Icons.add),
-        label: const Text('Add'),
+      bottomNavigationBar: SafeArea(
+        minimum: const EdgeInsets.fromLTRB(18, 8, 18, 12),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                onPressed: () => _openForm(),
+                icon: const Icon(Icons.add),
+                label: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 13),
+                  child: Text('Add Product'),
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton.icon(
+                onPressed: _scanProduct,
+                icon: const Icon(Icons.qr_code_scanner),
+                label: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 13),
+                  child: Text('Scan Barcode'),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -86,6 +113,48 @@ class _ProductsScreenState extends State<ProductsScreen> {
   Future<void> _openForm([Product? product]) async {
     await Navigator.of(context).push(
       MaterialPageRoute(builder: (_) => ProductFormScreen(product: product)),
+    );
+  }
+
+  Future<void> _scanProduct() async {
+    final barcode = await Navigator.of(context).push<String>(
+      MaterialPageRoute(
+        builder:
+            (_) => const BarcodeScannerScreen(
+              title: 'Scan product barcode',
+            ),
+      ),
+    );
+    if (barcode == null || !mounted) return;
+
+    final state = context.read<AppState>();
+    final existing = await state.database.productByBarcode(barcode);
+    if (existing != null) {
+      if (!mounted ||
+          !await AdminGuard.authorize(
+            context,
+            action: 'edit the scanned product',
+          )) {
+        return;
+      }
+      if (mounted) await _openForm(existing);
+      return;
+    }
+
+    ProductLookupResult? lookup;
+    if (state.settings['online_lookup'] != 'false') {
+      lookup = await OpenFoodFactsLookupService().lookup(barcode);
+    }
+    if (!mounted) return;
+    await Navigator.of(context).push<bool>(
+      MaterialPageRoute(
+        builder:
+            (_) => ProductFormScreen(
+              initialBarcode: barcode,
+              initialName: lookup?.name,
+              initialBrand: lookup?.brand,
+            ),
+      ),
     );
   }
 }

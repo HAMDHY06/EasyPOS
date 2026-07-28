@@ -215,7 +215,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ShareParams(
                         files: [XFile(file.path)],
                         text:
-                            'EasyPOS 1.3 complete backup. Save this file to Google Drive, OneDrive or another safe location.',
+                            'EasyPOS 1.4 complete backup. Save this file to Google Drive, OneDrive or another safe location.',
                       ),
                     );
                   },
@@ -339,7 +339,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           const Card(
             child: ListTile(
               leading: Icon(Icons.point_of_sale),
-              title: Text('EasyPOS 1.3.0'),
+              title: Text('EasyPOS 1.4.0'),
               subtitle: Text(
                 'Lightweight offline point of sale\nDeveloped by HamdhyTech',
               ),

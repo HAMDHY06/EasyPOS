@@ -6,6 +6,7 @@ import '../scanner/barcode_scanner_screen.dart';
 import '../products/product_form_screen.dart';
 import '../../core/services/admin_guard.dart';
 import '../../core/services/product_lookup_service.dart';
+import 'stock_adjustment_dialog.dart';
 
 class StockScreen extends StatefulWidget {
   const StockScreen({super.key});
@@ -159,95 +160,18 @@ class _StockScreenState extends State<StockScreen> {
   Future<void> _adjust(Product product, {required bool positive}) async {
     if (!await AdminGuard.authorize(context, action: 'adjust stock')) return;
     if (!mounted) return;
-    final quantity = TextEditingController();
-    String reason = positive ? 'New stock received' : 'Manual correction';
-    final result = await showDialog<double>(
-      context: context,
-      builder:
-          (context) => StatefulBuilder(
-            builder:
-                (context, setDialogState) => AlertDialog(
-                  title: Text('${positive ? 'Add' : 'Remove'} stock'),
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${product.name}\nCurrent: ${product.stockQuantity}',
-                      ),
-                      const SizedBox(height: 12),
-                      TextField(
-                        controller: quantity,
-                        autofocus: true,
-                        keyboardType: const TextInputType.numberWithOptions(
-                          decimal: true,
-                        ),
-                        decoration: const InputDecoration(
-                          labelText: 'Quantity',
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      DropdownButtonFormField<String>(
-                        initialValue: reason,
-                        decoration: const InputDecoration(labelText: 'Reason'),
-                        items: const [
-                          DropdownMenuItem(
-                            value: 'New stock received',
-                            child: Text('New stock received'),
-                          ),
-                          DropdownMenuItem(
-                            value: 'Damaged',
-                            child: Text('Damaged'),
-                          ),
-                          DropdownMenuItem(
-                            value: 'Expired',
-                            child: Text('Expired'),
-                          ),
-                          DropdownMenuItem(
-                            value: 'Returned',
-                            child: Text('Returned'),
-                          ),
-                          DropdownMenuItem(
-                            value: 'Manual correction',
-                            child: Text('Manual correction'),
-                          ),
-                          DropdownMenuItem(
-                            value: 'Other',
-                            child: Text('Other'),
-                          ),
-                        ],
-                        onChanged:
-                            (value) =>
-                                setDialogState(() => reason = value ?? reason),
-                      ),
-                    ],
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: const Text('Cancel'),
-                    ),
-                    FilledButton(
-                      onPressed: () {
-                        final value = double.tryParse(quantity.text);
-                        if (value != null && value > 0) {
-                          Navigator.pop(context, positive ? value : -value);
-                        }
-                      },
-                      child: const Text('Save'),
-                    ),
-                  ],
-                ),
-          ),
+    final result = await showStockAdjustmentDialog(
+      context,
+      product: product,
+      positive: positive,
     );
-    quantity.dispose();
     if (result == null || !mounted) return;
     try {
       final state = context.read<AppState>();
       await state.database.adjustStock(
         product: product,
-        change: result,
-        reason: reason,
+        change: result.change,
+        reason: result.reason,
       );
       await state.refreshProducts();
     } catch (error) {

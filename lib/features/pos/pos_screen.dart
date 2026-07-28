@@ -9,6 +9,7 @@ import 'product_quantity_dialog.dart';
 import '../sales/bill_qr_dialog.dart';
 import '../sales/receipt_service.dart';
 import '../../core/services/product_lookup_service.dart';
+import '../../core/services/interaction_feedback_service.dart';
 
 class PosScreen extends StatefulWidget {
   const PosScreen({super.key});
@@ -108,6 +109,7 @@ class _PosScreenState extends State<PosScreen> {
       return;
     }
     state.addToCart(product, quantity: quantity);
+    await InteractionFeedbackService.productAdded();
   }
 
   @override

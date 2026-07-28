@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import '../../core/services/interaction_feedback_service.dart';
 
 class BarcodeScannerScreen extends StatefulWidget {
   const BarcodeScannerScreen({super.key, this.title = 'Scan barcode'});
@@ -20,12 +21,13 @@ class _BarcodeScannerScreenState extends State<BarcodeScannerScreen> {
         fit: StackFit.expand,
         children: [
           MobileScanner(
-            onDetect: (capture) {
+            onDetect: (capture) async {
               if (_handled || capture.barcodes.isEmpty) return;
               final value = capture.barcodes.first.rawValue;
               if (value == null || value.isEmpty) return;
               _handled = true;
-              Navigator.of(context).pop(value);
+              await InteractionFeedbackService.barcodeScanned();
+              if (context.mounted) Navigator.of(context).pop(value);
             },
           ),
           Center(

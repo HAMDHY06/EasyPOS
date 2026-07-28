@@ -28,7 +28,7 @@ void main() {
 
     expect(payload, contains('EP-2026-000123'));
     expect(payload, contains('Rs. 1,250.00'));
-    expect(payload, contains('EasyPOS 1.3'));
+    expect(payload, contains('EasyPOS 1.4'));
     expect(payload.length, lessThan(300));
   });
 

@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../app/app_state.dart';
 import '../../core/models/product.dart';
 import '../scanner/barcode_scanner_screen.dart';
+import '../../core/services/interaction_feedback_service.dart';
 
 class ProductFormScreen extends StatefulWidget {
   const ProductFormScreen({
@@ -124,6 +125,7 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
     try {
       await state.database.saveProduct(product);
       await state.refreshProducts();
+      await InteractionFeedbackService.productAdded();
       if (mounted) Navigator.pop(context, true);
     } catch (error) {
       if (!mounted) return;
@@ -153,6 +155,7 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
         final state = context.read<AppState>();
         await state.database.saveProduct(product, updateDuplicate: true);
         await state.refreshProducts();
+        await InteractionFeedbackService.productAdded();
         if (mounted) Navigator.pop(context, true);
       }
     }

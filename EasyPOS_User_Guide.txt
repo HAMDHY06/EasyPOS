@@ -1,4 +1,4 @@
-EASYPOS 1.3 - COMPLETE USER GUIDE
+EASYPOS 1.4 - COMPLETE USER GUIDE
 Developed by HamdhyTech
 Android package: com.hamdhytech.easypos
 
@@ -102,7 +102,7 @@ changes.
 ======================================================================
 
 1. Open Products from the bottom navigation.
-2. Select Add Product.
+2. Select the full-width Add Product button.
 3. Enter the product name.
 4. Enter or scan the barcode. A barcode is optional, but recommended.
 5. Enter the brand if required.
@@ -221,6 +221,9 @@ After successful payment:
 
 Barcode scanning works with the phone camera. Use good lighting and keep
 the barcode flat and fully visible.
+
+A successful scan produces sound and haptic feedback. The result depends on
+the phone's media/system volume and vibration settings.
 
 ======================================================================
 10. SHOPPING CART AND STOCK VALIDATION
@@ -379,6 +382,10 @@ To adjust stock:
 EasyPOS records stock movements with previous quantity, new quantity,
 reason, reference, date, and actor. Stock cannot be manually adjusted below
 zero.
+
+The Products screen also provides a full-width Scan Barcode button directly
+below Add Product. Use it to open an existing product or create a new product
+with the scanned barcode already filled in.
 
 ======================================================================
 18. REPORTS
@@ -676,8 +683,8 @@ Recommended precautions:
 ======================================================================
 
 Application: EasyPOS
-Version: 1.3.0
-Build: 3
+Version: 1.4.0
+Build: 4
 Developer: HamdhyTech
 Default currency: Sri Lankan Rupees (LKR)
 Default symbol: Rs.

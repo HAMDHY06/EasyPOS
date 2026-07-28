@@ -1,0 +1,95 @@
+EASYPOS VERSION 1.4 CHANGELOG
+Release: 1.4.0
+Build: 4
+Developer: HamdhyTech
+
+======================================================================
+FIXED
+======================================================================
+
+- Fixed the Flutter lifecycle assertion that could appear when changing
+  stock in Stock Management.
+
+- Rebuilt the stock adjustment dialog so it owns and safely disposes its
+  quantity controller.
+
+- Added in-dialog validation for invalid or empty stock quantities.
+
+- Added validation that prevents removing more stock than is currently
+  available.
+
+- Preserved administrator authentication before stock changes.
+
+======================================================================
+NEW
+======================================================================
+
+- Added an audible click and haptic confirmation after every successful
+  barcode scan.
+
+- Added an audible click and haptic confirmation when a product is added
+  to the sale cart.
+
+- Added an audible click and haptic confirmation when a product is saved
+  or updated.
+
+- Added two clear, persistent actions to the Products screen:
+
+    1. Add Product
+    2. Scan Barcode
+
+- Placed Scan Barcode directly below Add Product for easier one-handed use.
+
+- Scanning an existing product from Products now opens that product after
+  administrator authorization.
+
+- Scanning an unknown barcode from Products now opens a new product form
+  with the barcode already filled in.
+
+- When enabled, Open Food Facts lookup can prefill the name and brand of a
+  newly scanned product.
+
+======================================================================
+IMPROVED
+======================================================================
+
+- Stock adjustment now displays the current quantity and unit clearly.
+
+- Stock changes use a dedicated Save Stock action.
+
+- Stock-removal errors are shown before the database operation.
+
+- Product creation is faster because Add Product and Scan Barcode remain
+  visible at the bottom of the Products screen.
+
+- Scanner feedback is shared across Sale, Products, Product Form, and Stock
+  Management because all flows use the same scanner screen.
+
+======================================================================
+COMPATIBILITY
+======================================================================
+
+- Android minimum SDK: API 24
+- Android target SDK: API 36
+- Default currency: LKR
+- Default symbol: Rs.
+- Database: SQLite
+- Operation: Offline-first
+- Package: com.hamdhytech.easypos
+
+======================================================================
+UPDATE NOTES
+======================================================================
+
+- Create a complete EasyPOS backup before installing the update.
+
+- Install version 1.4 over version 1.3 to keep the existing local database.
+
+- Do not uninstall the earlier version before creating and verifying a
+  backup.
+
+- Camera permission is required for barcode scanning.
+
+- Sound volume depends on the Android system volume and sound settings.
+
+END OF CHANGELOG
