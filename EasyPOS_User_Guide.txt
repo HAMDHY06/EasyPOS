@@ -1,0 +1,689 @@
+EASYPOS 1.3 - COMPLETE USER GUIDE
+Developed by HamdhyTech
+Android package: com.hamdhytech.easypos
+
+======================================================================
+1. ABOUT EASYPOS
+======================================================================
+
+EasyPOS is a lightweight Android Point of Sale application designed for
+small shops and businesses. The main application works offline and stores
+business information, products, stock, sales, settings, and reports in a
+local SQLite database on the device.
+
+Default currency:
+
+  Currency code: LKR
+  Currency symbol: Rs.
+  Decimal places: 2
+  Example: Rs. 1,250.00
+
+Main features:
+
+  - Offline product and stock management
+  - Barcode scanning and internal barcode generation
+  - Quantity confirmation before adding products to a sale
+  - Cash, card, bank transfer, mobile, credit, and other payments
+  - Automatic stock deduction
+  - Sales history and sale cancellation
+  - PDF e-bills and bill QR codes
+  - Reports and CSV export
+  - Complete backup and restore
+  - Optional administrator PIN and biometric authentication
+  - Light, dark, and system themes
+
+======================================================================
+2. INSTALLING EASYPOS
+======================================================================
+
+1. Copy the EasyPOS APK to the Android phone.
+2. Open the APK from Files, Downloads, WhatsApp, Drive, or another source.
+3. If Android displays an installation warning, allow installation from
+   that source in the phone settings.
+4. Select Install.
+5. Open EasyPOS after installation.
+6. Grant camera permission when barcode scanning or product photography
+   is used for the first time.
+
+Important:
+
+  - Download APKs only from the official HamdhyTech source.
+  - Before updating or uninstalling, create a complete backup.
+  - Installing a newer EasyPOS version over the existing application
+    normally keeps the local database.
+  - Uninstalling the application can erase all locally stored data.
+
+======================================================================
+3. FIRST-TIME BUSINESS SETUP
+======================================================================
+
+When EasyPOS opens for the first time:
+
+1. Enter the business name.
+2. Enter the owner's name.
+3. Enter the phone number if required.
+4. Enter the business address if required.
+5. Confirm LKR as the currency.
+6. Optionally create a four-digit administrator PIN.
+7. Select Start using EasyPOS.
+
+The administrator PIN protects sensitive areas such as Settings and
+Reports. Remember the PIN. EasyPOS does not send it to a server.
+
+Two sample products may be available in a new database. They can be
+edited or removed if they have not been used in a sale.
+
+======================================================================
+4. HOME DASHBOARD
+======================================================================
+
+The Home screen provides a summary of the business:
+
+  - Today's sales value
+  - Number of bills today
+  - Number of low-stock products
+  - Total number of products
+
+Quick actions provide access to:
+
+  - New Sale
+  - Products
+  - Stock
+  - Sales History
+  - Barcodes
+  - Reports
+
+Pull down on the dashboard to refresh product and dashboard information.
+The dashboard also refreshes automatically after product, stock, and sale
+changes.
+
+======================================================================
+5. ADDING A PRODUCT
+======================================================================
+
+1. Open Products from the bottom navigation.
+2. Select Add Product.
+3. Enter the product name.
+4. Enter or scan the barcode. A barcode is optional, but recommended.
+5. Enter the brand if required.
+6. Select a category.
+7. Enter the cost price.
+8. Enter the selling price.
+9. Enter the opening stock.
+10. Enter the low-stock warning level.
+11. Select the unit:
+
+    - Pieces
+    - Kilograms
+    - Grams
+    - Litres
+    - Millilitres
+
+12. Enter the tax percentage if required.
+13. Add notes if required.
+14. Optionally capture a product photograph.
+15. Optionally set an expiry date.
+16. Enable Quick Sale favourite if the product is commonly sold.
+17. Select Save Product.
+
+If the barcode already exists, EasyPOS asks whether the existing product
+should be updated. Review the details carefully before confirming.
+
+======================================================================
+6. EDITING OR REMOVING PRODUCTS
+======================================================================
+
+1. Open Products.
+2. Search by product name or barcode.
+3. Open the required product.
+4. Select Edit to change its information.
+5. Save the changes.
+
+A product that has already been used in a sale cannot be permanently
+deleted because it is required for sales records. Update or retain the
+product to preserve accurate history.
+
+======================================================================
+7. CREATING INTERNAL BARCODES
+======================================================================
+
+EasyPOS creates internal Code 128 barcodes for products. These are suitable
+for internal shop use. They are not registered UPC or EAN retail numbers.
+
+To create a barcode for a new product:
+
+1. Open Barcodes from the Home screen.
+2. Select Create a New Product Barcode.
+3. Enter the product name.
+4. Enter the selling price.
+5. Select Generate.
+6. EasyPOS creates an internal barcode number.
+7. Add the remaining product information.
+8. Save the product.
+9. Select the number of barcode-label copies required.
+10. Choose the PDF layout:
+
+    - One large label
+    - Two columns
+    - Three columns
+
+11. Select Generate and Share PDF.
+12. Save, share, or print the PDF labels.
+
+To create labels for existing products, use Add Product inside the Barcode
+Creator and select products that already have barcode numbers.
+
+======================================================================
+8. MAKING A SALE
+======================================================================
+
+1. Open Sale from the bottom navigation.
+2. Search for a product or scan its barcode.
+3. When a product is selected, EasyPOS asks for the quantity.
+4. Quantity defaults to 1.
+5. Change the quantity if required.
+6. Select Add to Cart.
+7. Repeat for all products.
+8. Select View Cart.
+9. Review products, quantities, tax, discount, and total.
+10. Optionally enter the customer name and phone number.
+11. Select the payment method.
+12. For cash, enter the amount received.
+13. For credit, enter any initial payment.
+14. Select Complete Sale.
+
+EasyPOS validates stock before completing the transaction. Unless negative
+stock is enabled in Settings, quantities above the available stock cannot
+be sold.
+
+After successful payment:
+
+  - A sequential bill number is generated.
+  - Stock is deducted automatically.
+  - The sale appears in Sales History.
+  - The dashboard is updated.
+  - The bill can be shared as a PDF.
+  - A bill QR code can be displayed.
+
+======================================================================
+9. SCANNING A BARCODE DURING A SALE
+======================================================================
+
+1. Open Sale.
+2. Select the scanner button.
+3. Allow camera permission if requested.
+4. Place the barcode inside the scanning frame.
+5. If the product exists, enter the quantity and select Add to Cart.
+6. If the product is unknown, EasyPOS may search Open Food Facts when
+   online lookup is enabled.
+7. Add the unknown product, enter local price and stock information, save
+   it, and then confirm the sale quantity.
+
+Barcode scanning works with the phone camera. Use good lighting and keep
+the barcode flat and fully visible.
+
+======================================================================
+10. SHOPPING CART AND STOCK VALIDATION
+======================================================================
+
+Inside the cart:
+
+  - Use plus to increase quantity.
+  - Use minus to reduce quantity.
+  - Use delete to remove an item.
+  - Enter a discount if required.
+  - Review subtotal, tax, discount, total, and cash balance.
+
+If a requested quantity is higher than available stock, EasyPOS displays
+the available amount and prevents the invalid addition. Negative stock can
+be permitted from Settings when the business requires it.
+
+======================================================================
+11. PAYMENT METHODS
+======================================================================
+
+EasyPOS supports:
+
+  - Cash
+  - Card
+  - Bank transfer
+  - Mobile payment
+  - Credit
+  - Other
+
+Cash:
+
+  Enter the amount received. EasyPOS shows the customer balance.
+
+Credit:
+
+  Enter an optional initial payment. The unpaid amount is recorded as the
+  bill balance. Additional payments can be recorded later from Sales
+  History.
+
+Other electronic methods:
+
+  EasyPOS records the selected method and treats the bill as paid. The
+  actual bank, card, or mobile transaction is processed outside EasyPOS.
+
+======================================================================
+12. SALES HISTORY
+======================================================================
+
+1. Open Sales from the bottom navigation.
+2. Search using the bill number or customer name.
+3. Select a bill to view:
+
+   - Products and quantities
+   - Unit prices
+   - Subtotal
+   - Discount
+   - Tax
+   - Total
+   - Payment information
+
+Available bill actions:
+
+  - Download or share the e-bill
+  - Show the bill QR
+  - Record a credit payment
+  - Cancel the sale and return stock
+
+Sales History refreshes automatically after checkout, payment, restore, or
+sale cancellation. Pull down on the list if a manual refresh is required.
+
+======================================================================
+13. CANCELLING A SALE
+======================================================================
+
+1. Open Sales History.
+2. Open the required completed bill.
+3. Select Cancel and Return Stock.
+4. Confirm the cancellation.
+
+EasyPOS marks the sale as cancelled and returns the sold quantities to
+stock. The original record remains available for audit purposes. Only
+completed, non-cancelled sales can be cancelled.
+
+======================================================================
+14. CREDIT PAYMENTS
+======================================================================
+
+1. Open a credit bill with an outstanding balance.
+2. Select Record Credit Payment.
+3. Enter the amount received.
+4. Save the payment.
+
+The payment cannot be greater than the outstanding balance. When the
+balance reaches zero, the bill is marked paid.
+
+======================================================================
+15. PDF E-BILLS
+======================================================================
+
+After a sale or from Sales History:
+
+1. Select Share Bill or Download or Share E-Bill.
+2. Android displays the available applications.
+3. Save the PDF, send it to the customer, upload it to cloud storage, or
+   open it with a compatible printing application.
+
+The receipt contains:
+
+  - EasyPOS and business information
+  - Bill number and date
+  - Customer name when supplied
+  - Items, quantities, prices, and totals
+  - Payment details
+  - Bill QR code
+  - Configurable bill footer
+
+======================================================================
+16. BILL QR CODES
+======================================================================
+
+To show a QR immediately after payment:
+
+1. Complete the sale.
+2. Select Show QR.
+
+To show a QR later:
+
+1. Open Sales History.
+2. Open the bill.
+3. Select Show Bill QR.
+
+The QR contains a compact offline bill reference including the business,
+bill number, date, total, payment method, and payment status. It is not an
+internet webpage because EasyPOS does not require a hosted cloud server.
+
+Use a standard QR scanner to read the bill summary. Increase screen
+brightness and avoid reflections if another phone has difficulty scanning.
+
+======================================================================
+17. STOCK MANAGEMENT
+======================================================================
+
+Open Stock from the Home screen to review available quantities and
+low-stock products.
+
+To adjust stock:
+
+1. Find or scan the product.
+2. Open the stock adjustment action.
+3. Select stock in or stock out.
+4. Enter the quantity.
+5. Enter the reason.
+6. Confirm the adjustment.
+
+EasyPOS records stock movements with previous quantity, new quantity,
+reason, reference, date, and actor. Stock cannot be manually adjusted below
+zero.
+
+======================================================================
+18. REPORTS
+======================================================================
+
+Open Reports from the Home screen. Administrator authentication may be
+required.
+
+Reports include:
+
+  - Sales overview
+  - Daily sales
+  - Profit estimate
+  - Best-selling products
+  - Sales by payment method
+
+Reports use completed sales and exclude cancelled bills where applicable.
+CSV export can be shared or saved using Android's share options.
+
+Profit is an estimate based on recorded cost price, selling price, quantity,
+and discounts. Accurate product cost prices are required for meaningful
+profit reporting.
+
+======================================================================
+19. SETTINGS
+======================================================================
+
+Open Settings from the bottom navigation. Enter the administrator PIN or
+use biometric authentication when configured.
+
+Business:
+
+  Edit the business name, owner, phone number, and address.
+
+Currency:
+
+  LKR and Rs. are selected by default. Other available currencies can be
+  selected when required.
+
+Theme:
+
+  - System
+  - Light
+  - Dark
+
+Sales:
+
+  - Allow or prevent negative stock
+  - Enable or disable online product lookup
+  - Edit the bill footer
+  - Edit the bill-number prefix
+
+Security:
+
+  - Change or remove the four-digit administrator PIN
+  - Enable biometric authentication when supported by the phone
+
+Data:
+
+  - Upload or share complete backup
+  - Download or restore backup
+  - Reset all application data
+
+======================================================================
+20. COMPLETE BACKUP
+======================================================================
+
+The complete backup contains:
+
+  - Business configuration
+  - Categories
+  - Products
+  - Stock quantities
+  - Customers stored with sales
+  - Sales and sale items
+  - Payments
+  - Stock movements
+  - Barcode batch history
+  - Application settings
+
+To create and upload a backup:
+
+1. Open Settings.
+2. Select Upload or Share Complete Backup.
+3. Select Google Drive, OneDrive, Files, email, or another safe location.
+4. Wait until the destination confirms the upload.
+
+Create backups regularly and before:
+
+  - Updating EasyPOS
+  - Changing phones
+  - Resetting the application
+  - Uninstalling the application
+  - Sending the phone for repair
+
+The automatic local backup is not a replacement for copying a backup away
+from the phone. A lost or damaged phone can also lose its local backups.
+
+======================================================================
+21. RESTORING ON A NEW DEVICE
+======================================================================
+
+1. Install EasyPOS on the new Android device.
+2. Download the EasyPOS .db backup from the chosen cloud location.
+3. Open EasyPOS and complete temporary first-time setup if required.
+4. Open Settings.
+5. Select Download or Restore Backup.
+6. Enter the administrator PIN if requested.
+7. Select the downloaded .db file.
+8. Confirm Restore.
+9. Wait for the confirmation message.
+10. Review Products, Stock, Sales History, and Settings.
+
+Restore replaces the current local database. EasyPOS creates a fresh backup
+of the current database before replacement.
+
+Product photographs stored as local file paths may not be available on the
+new phone. Core product, stock, sale, and configuration information is
+stored in the database backup.
+
+======================================================================
+22. ADMINISTRATOR PIN AND BIOMETRICS
+======================================================================
+
+The administrator PIN protects sensitive functions.
+
+To change the PIN:
+
+1. Open Settings.
+2. Select Change Admin PIN.
+3. Authenticate with the current PIN if required.
+4. Enter a new four-digit PIN.
+5. Save.
+
+To remove the PIN, leave the new PIN field blank when the option is
+available.
+
+To enable biometrics:
+
+1. Configure fingerprint or face authentication in Android settings.
+2. Open EasyPOS Settings.
+3. Enable Biometric Authentication.
+
+If biometrics are unavailable, the PIN remains available.
+
+======================================================================
+23. RESETTING EASYPOS
+======================================================================
+
+Reset permanently removes products, sales, stock, business details, and
+settings from the active database.
+
+1. Create and verify an external backup.
+2. Open Settings.
+3. Select Reset Application Data.
+4. Authenticate.
+5. Type RESET exactly.
+6. Confirm.
+
+EasyPOS creates a local backup before resetting, but an external copy is
+strongly recommended.
+
+======================================================================
+24. UPDATING EASYPOS
+======================================================================
+
+1. Create a complete backup.
+2. Download the newer official APK.
+3. Install it over the existing EasyPOS application.
+4. Do not uninstall the old application first.
+5. Open EasyPOS.
+6. Verify products, stock, settings, and Sales History.
+
+Android may refuse an update if the APK uses a different signing key. If
+that happens, do not uninstall until a valid external backup has been
+created and verified.
+
+======================================================================
+25. TROUBLESHOOTING
+======================================================================
+
+Application does not install:
+
+  - Allow installation from the APK source.
+  - Confirm that the phone uses Android 7.0/API 24 or later.
+  - Confirm that sufficient storage is available.
+
+Scanner does not open:
+
+  - Grant camera permission in Android Settings > Apps > EasyPOS.
+  - Close other applications using the camera.
+  - Restart EasyPOS.
+
+Barcode is not detected:
+
+  - Improve lighting.
+  - Clean the camera lens.
+  - Keep the barcode flat.
+  - Move the phone closer or farther away.
+  - Enter the barcode manually if necessary.
+
+QR is difficult to scan:
+
+  - Increase screen brightness.
+  - Remove glare.
+  - Hold the scanning phone steady.
+  - Open the QR from Sales History again.
+
+Product will not enter the cart:
+
+  - Enter a quantity greater than zero.
+  - Check available stock.
+  - Reduce the requested quantity or adjust stock.
+  - Enable negative stock only when appropriate.
+
+Sale cannot be completed:
+
+  - Confirm that the cart is not empty.
+  - Check stock quantities.
+  - For cash, enter an amount equal to or greater than the total.
+  - Check that discount and payment values are valid numbers.
+
+Sales History appears empty:
+
+  - Clear the search box.
+  - Pull down to refresh.
+  - Confirm that the sale completed successfully.
+  - Check whether a restored backup contains sales.
+
+Backup cannot be restored:
+
+  - Select an EasyPOS .db backup.
+  - Download the file fully before selecting it.
+  - Confirm that the file is not damaged or renamed incorrectly.
+  - Keep the existing data until a valid backup is available.
+
+Administrator PIN is rejected:
+
+  - Enter exactly four digits.
+  - Confirm the correct business backup is active.
+  - Try configured biometric authentication.
+
+Application displays a red Flutter error screen:
+
+  - Record the exact actions that caused it.
+  - Take a screenshot.
+  - Restart EasyPOS and check whether the operation was saved.
+  - Report the EasyPOS version, Android model, and steps to HamdhyTech.
+
+======================================================================
+26. RECOMMENDED DAILY WORKFLOW
+======================================================================
+
+Start of day:
+
+  1. Check low-stock products.
+  2. Add received stock.
+  3. Confirm prices and expiry dates.
+
+During sales:
+
+  1. Scan or select products.
+  2. Confirm quantities.
+  3. Review the cart.
+  4. Complete payment.
+  5. Share the bill or show its QR when required.
+
+End of day:
+
+  1. Review dashboard totals.
+  2. Review Sales History.
+  3. Check Reports.
+  4. Create and upload a complete backup.
+
+======================================================================
+27. DATA SAFETY
+======================================================================
+
+EasyPOS is offline-first. The business owner is responsible for protecting
+the device and backups.
+
+Recommended precautions:
+
+  - Use an Android screen lock.
+  - Set an EasyPOS administrator PIN.
+  - Enable biometrics when appropriate.
+  - Create frequent external backups.
+  - Keep more than one recent backup.
+  - Do not share database backups publicly.
+  - Verify the destination before sending bills or reports.
+  - Do not uninstall EasyPOS without a verified backup.
+
+======================================================================
+28. VERSION INFORMATION
+======================================================================
+
+Application: EasyPOS
+Version: 1.3.0
+Build: 3
+Developer: HamdhyTech
+Default currency: Sri Lankan Rupees (LKR)
+Default symbol: Rs.
+Primary platform: Android
+Interface language: English
+Database: SQLite
+Operation: Offline-first
+
+END OF USER GUIDE
